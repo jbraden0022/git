@@ -1,0 +1,5 @@
+<?php
+
+echo "THE AJAX IS WORKING CORRECTLY";
+
+?>
