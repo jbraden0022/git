@@ -65,7 +65,7 @@ session_start()
 	<!-- end:Main Form -->
 </div>
 
-<script src="login.js"></script>
+<script src="functions.js"></script>
 
 
 </body>

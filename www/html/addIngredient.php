@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-echo ".";
+
 
 $db_host = 'localhost';
 $db_username = 'root';
@@ -15,6 +15,7 @@ $ingredientName = $_POST['ingredientName'];
 
 
 
+$userID = $_SESSION["username"];
 
 
 $sql = "SELECT `ingredientID` FROM `ingredient` WHERE `ingredientName` = '$ingredientName'";
@@ -28,21 +29,46 @@ echo 'Invalid ingredient';
 }
 else if ($res == 1) {
         $row = mysqli_fetch_assoc($result);
-		$ID = $row['ingredientID'];
+	$ID = $row['ingredientID'];
+
+
+	
+	array_push($_SESSION['quantity'], $quantity);
+	array_push($_SESSION['quantityType'], $quantityType);
+     
+        $sql2 = "SELECT `ingredientName` FROM `ingredient` WHERE `ingredientID` = '$ID'";
+        $result2 = mysqli_query($db, $sql2);
+        $row2 = mysqli_fetch_assoc($result2);
+        $ingredientName  = $row2['ingredientName'];
+
+
+
+	array_push($_SESSION['ingredientID'], $ingredientName);
+
+	$sql = "INSERT INTO `userIngredients`(`userID`, `quantity`, `quantityType`, `ingredientID`) VALUES (" . $userID  . ", " . $quantity . ", '".$quantityType."', " . $ID . ")";
+
+
+
+	echo "Successfully Added";
         
 } else {
 echo 'Duplicate Ingredient Error';
 }
 
-
+//echo "Quantity: " . $quantity
        
-$sql = "INSERT INTO `userIngredients`(`userID`, `quantity`, `quantityType`, `ingredientID`) VALUES (99, '".$quantity."', '".$quantityType."', '".$ID."')";
+
+
+
+echo $sql;
 		
 mysqli_query($db, $sql);
 
-array_push($_SESSION['quantity'], $quantity);
-array_push($_SESSION['quantityType'], $quantityType);
-array_push($_SESSION['ID'], $ID);
+
+
+
+//header('Location: https://refrigeratortorecipe.me/pantry.php');
+header("Refresh:0");
 
 
 //echo "success"; //take this out, just to test

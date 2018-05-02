@@ -50,7 +50,7 @@ session_start();
 		{
 		echo '<li><a href=pantry.php>Go To My Pantry</a></li>';
         echo '<li><a href=search.php>Search Recipes</a></li>';
-        echo '<li><a href=#>Logout</a></li>';
+        echo '<li><a href=javascript:logout()>Logout</a></li>';
 		}
 		?>
       </ul>
@@ -86,21 +86,26 @@ session_start();
 	  
 	  	<div class="col-md-1 col-md-offset-1">
 	  
-        <div class="dropdown">
-				<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Measurement
+
+			          <div class="dropdown">
+              <!--  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Measurement
                         <span class="caret"></span></button>
 
-			   <select class="dropdown-menu" id="quantityType">
-                                <option value=cup>Cup</option>
-				<option value=gallon>Gallon</option>
+q
+                 --!>          <select class="form-control" id="quantityType">
+                                <option class="form-control" value=cup>Cup</option>
+                                <option value=gallon>Gallon</option>
                                 <option value=Ounce>Ounce</option>
                                 <option value=pint>Pint</option>
                                 <option value=pound>Pound</option>
-                                <option value=quart></option>
+                                <option value=quart>Quart</option>
+				<option value= >N/A</option>
                                 <option value=tablespoon>Tablespoon</option>
                                 <option value=teaspoon>Teaspoon</option>
                         </select>
-		</div>
+                </div>
+
+		
 		
       </div>
 	  
@@ -129,7 +134,6 @@ session_start();
         <th>Quantity</th>
         <th>Type</th>
         <th>Ingredient</th>
-		<th>Update</th>
 		<th>Delete</th>
       </tr>
     </thead>
@@ -139,21 +143,30 @@ session_start();
 	<!-- This data is basically just a placeholder to see how the table looks at the moment -->
 	<!-- For the update I am not sure if we should make all fields updatable or take them to a page to update -->
 	<!-- Also not sure if we should just have update button at bottom for all, or button for each -->
-	<tr>
-	<td> 2 </td>
-	<td> Cup </td>
-	<td> Sugar </td>
-	<td><button class='btn btn-block' type='button'>Update</button></td>
-	<td><button class='btn btn-block' type='button'>Delete</button></td>
-	</tr>
-	<tr>
-	<td> 1/2 </td>
-	<td> Teaspoon </td>
-	<td> Vanilla Extract </td>
-	<td><button class='btn btn-block' type='button'>Update</button></td>
-	<td><button class='btn btn-block' type='button'>Delete</button></td>
-	</tr>
+<?php
 
+session_start();
+
+$quantity = $_SESSION["quantity"];
+$quantityType = $_SESSION["quantityType"];
+$ingredientID = $_SESSION["ingredientID"];
+$count  = 0;
+//echo "XXXXXXXXXXXXXXXXXXXXXXXXXXXX" . count($quantity);
+while($count < count($quantity))
+{
+
+
+
+    echo "<tr>";
+    echo "<td>" . $quantity[$count] ."</td>";
+    echo  "<td>" . $quantityType[$count] ."</td>";
+    echo  "<td>" . $ingredientID[$count] . "</td>";
+    echo "<td><button class='btn btn-block' type='button' id=delete" . $count . ">Delete</button></td>";
+    echo "</tr>";
+$count = $count+1;
+
+}
+?>
     </tbody>
   </table>
 </div>
@@ -171,7 +184,7 @@ session_start();
       </div>
       <div class="col-md-1 col-md-offset-0">
 	  
-        <button class="btn btn-block" type="button">Search</button>
+        <button class="btn btn-block" type="button" onclick='displayRecipes()'>See what recipes you can make!</button>
 		
       </div>
 

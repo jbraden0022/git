@@ -24,8 +24,7 @@ else if ($res == 1) {
       	session_start();
       	//Store the name in the session
       	$_SESSION['username'] = $userID;
-	header('Location: https://refrigeratortorecipe.me/pantry.php');
-
+	header('Location: https://refrigeratortorecipe.me/addIngre.php');
 } else {
 echo 'Multiple users found with those credentials.';
 }

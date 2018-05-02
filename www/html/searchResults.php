@@ -36,7 +36,7 @@ session_start();
       <ul class="nav navbar-nav navbar-right">
 	  <?php
 	  
-		$_SESSION["username"] = "";	
+		$username = "";	
 		$username = $_SESSION["username"];
 	  
 	  if($username == "")
@@ -89,7 +89,7 @@ session_start();
 <div class = "center">
 <?php
 
-$_SESSION["results"] = array("Slow Cooker Pulled Pork", "John's Famous Lasagna", "Chocolate Waffles");	
+//$_SESSION["results"] = array("Slow Cooker Pulled Pork", "John's Famous Lasagna", "Chocolate Waffles");	
 $results = $_SESSION["results"];
 $i= 0;
 foreach ($results as $result) {

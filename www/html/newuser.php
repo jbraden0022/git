@@ -24,8 +24,10 @@ if(strcmp($password, $confirm) != 0) {
 
 }
 else {
+$hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-$sql = "INSERT INTO user(username, password, email) VALUES ('$username','$password','$email')";
+
+$sql = "INSERT INTO user(username, password, email) VALUES ('$username','$hashed_password','$email')";
 
 if($db->query($sql) === TRUE) {
 $userID = $db->insert_id;

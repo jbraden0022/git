@@ -88,7 +88,7 @@ var ingredientName = document.getElementById('ingredientName').value;
         dataType: "text",
          success:function(result){ //prints out echo from php file
 	 if(result !== "."){
-		 alert(typeof result);
+		 alert(result);
       		 }
 	 },
         error: function(xhr, status, error) {
@@ -104,8 +104,74 @@ var ingredientName = document.getElementById('ingredientName').value;
 
                 }
 
-      });
+      }); 
 }
+
+
+
+function displayRecipes(){
+
+
+
+
+     jQuery.ajax({
+        url:"displayRecipes.php", //the page containing php script
+        type: "POST", //request type
+        data: {},//sets variables names in post
+        dataType: "text",
+         success:function(result){ //prints out echo from php file
+         // document.write(result);
+        },
+        error: function(xhr, status, error) {
+
+          console.log(xhr);
+                 if (xhr == 'undefined' || xhr == undefined) {
+                alert('undefined');
+            } else {
+                alert('object is there');
+            }
+            alert(status);
+            alert(error);
+
+                }
+
+      });
+
+
+
+}
+
+
+function logout(){
+
+
+     jQuery.ajax({
+        url:"logout.php", //the page containing php script
+        type: "POST", //request type
+        data: {},//sets variables names in post
+        dataType: "text",
+         success:function(result){ //prints out echo from php file
+          document.write(result);
+	
+        },
+        error: function(xhr, status, error) {
+
+          console.log(xhr);
+                 if (xhr == 'undefined' || xhr == undefined) {
+                alert('undefined');
+            } else {
+                alert('object is there');
+            }
+            alert(status);
+            alert(error);
+
+                }
+
+      });
+
+}
+
+
 
 function test(){
 document.write("That test function worked");

@@ -13,6 +13,7 @@ session_start();
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="functions.js"></script>
   
   <!-- This code grabs our custom css -->
   <link rel="stylesheet" href="styles.css">
@@ -36,7 +37,7 @@ session_start();
       <ul class="nav navbar-nav navbar-right">
 	  <?php
 	  
-		$_SESSION["username"] = "";	
+		$username  = "";	
 		$username = $_SESSION["username"];
 	  
 	  if($username == "")
@@ -49,7 +50,7 @@ session_start();
 		{
 		echo '<li><a href=pantry.php>Go To My Pantry</a></li>';
         echo '<li><a href=search.php>Search Recipes</a></li>';
-        echo '<li><a href=#>Logout</a></li>';
+        echo '<li><a href=javascript:logout()>Logout</a></li>';
 		}
 		?>
       </ul>
