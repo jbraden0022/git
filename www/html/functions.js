@@ -88,7 +88,15 @@ var ingredientName = document.getElementById('ingredientName').value;
         dataType: "text",
          success:function(result){ //prints out echo from php file
 	 if(result !== "."){
-		 alert(result);
+		// alert(result);
+
+			
+
+			if (window.confirm(result))
+			{
+   			 
+   			 window.location = '/pantry.php';
+			}
       		 }
 	 },
         error: function(xhr, status, error) {
@@ -105,8 +113,54 @@ var ingredientName = document.getElementById('ingredientName').value;
                 }
 
       }); 
+
+//document.location.href = "https://refrigeratortorecipe.me";
+
 }
 
+function removeIngredient(x){
+
+
+var ingredientName = document.getElementById('delete').value;
+var ingredientName = x;
+
+     jQuery.ajax({
+        url:"removeIngredient.php", //the page containing php script
+        type: "POST", //request type
+        data: {ingredientName:ingredientName},//sets variables names in post
+        dataType: "text",
+         success:function(result){ //prints out echo from php file
+         if(result !== "."){
+                // alert(result);
+
+
+
+                        if (window.confirm(result))
+                        {
+
+                         window.location = '/pantry.php';
+                        }
+
+               }
+         },
+        error: function(xhr, status, error) {
+
+          console.log(xhr);
+                 if (xhr == 'undefined' || xhr == undefined) {
+                alert('undefined');
+            } else {
+                alert('object is there');
+            }
+            alert(status);
+            alert(error);
+
+                }
+
+      });
+
+//document.location.href = "https://refrigeratortorecipe.me";
+
+}
 
 
 function displayRecipes(){
@@ -120,7 +174,7 @@ function displayRecipes(){
         data: {},//sets variables names in post
         dataType: "text",
          success:function(result){ //prints out echo from php file
-         // document.write(result);
+     //    document.write(result);
         },
         error: function(xhr, status, error) {
 
@@ -139,6 +193,7 @@ function displayRecipes(){
 
 
 
+window.location = '/searchResults.php';
 }
 
 

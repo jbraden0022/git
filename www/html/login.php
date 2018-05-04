@@ -43,20 +43,13 @@ session_start()
 						<label for="lg_password" class="sr-only">Password</label>
 						<input type="password" class="form-control" id="password" name="lg_password" placeholder="password">
 					</div>
-					<div class="form-group login-group-checkbox">
-						<input type="checkbox" id="remember" name="lg_remember">
-						<label for="lg_remember">remember</label>
-					</div>
 				</div>
 <script src="functions.js"></script>
 
 				<button type='button' onclick='login()' class="login-button"><i class="glyphicon glyphicon-apple"></i></button>
 
-
-
 			</div>
 			<div class="etc-login-form">
-				<p>forgot your password? <a href="forgotPass.php">click here</a></p>
 				<p>new user? <a href="registration.php">create new account</a></p>
 				<p>need to go home? <a href="index.php">go home</a></p>
 			</div>

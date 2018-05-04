@@ -8,7 +8,15 @@ $db = new mysqli($db_host, $db_username, $db_pass, $db_name) or die("Can't conne
 session_start();
 $userID = $_SESSION["username"];
 
+
+
+
+
+
 $sqlIngredients = "SELECT quantity, quantityType, ingredientID FROM userIngredients WHERE userID = '$userID'";
+
+
+
 
 
 
@@ -22,6 +30,7 @@ $num = 0;
 //$quantity = [];
 //$quantityType = [];
 //$ingredientID = [];
+
 
 
 
@@ -57,9 +66,7 @@ echo "Ingredients are: " . $ingredientID[$num]. "\n";
 
 }
 
-                $_SESSION["quantity"]= $quantity;
-               $_SESSION["quantityType"] = $quantityType;
-		$_SESSION["ingredientID"] = $ingredientID;
+
 } else {
 
 echo "Oh no :(";
@@ -68,7 +75,13 @@ echo "Oh no :(";
     //          $_SESSION["ingredientID"] = 0;
 }
 
-header('Location: https://refrigeratortorecipe.me/pantry.php');
+
+		 $_SESSION["quantity"]= $quantity;
+               $_SESSION["quantityType"] = $quantityType;
+                $_SESSION["ingredientID"] = $ingredientID;
+
+
+header('Location: https://refrigeratortorecipe.me');
 //  exit();*/
 $db->close();
 

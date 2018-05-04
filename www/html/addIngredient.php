@@ -47,8 +47,9 @@ else if ($res == 1) {
 
 	$sql = "INSERT INTO `userIngredients`(`userID`, `quantity`, `quantityType`, `ingredientID`) VALUES (" . $userID  . ", " . $quantity . ", '".$quantityType."', " . $ID . ")";
 
+	mysqli_query($db, $sql);
 
-
+	
 	echo "Successfully Added";
         
 } else {
@@ -60,15 +61,16 @@ echo 'Duplicate Ingredient Error';
 
 
 
-echo $sql;
+//echo $sql;
 		
-mysqli_query($db, $sql);
+
+
 
 
 
 
 //header('Location: https://refrigeratortorecipe.me/pantry.php');
-header("Refresh:0");
+//header("Refresh:0");
 
 
 //echo "success"; //take this out, just to test

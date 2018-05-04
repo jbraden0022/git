@@ -16,7 +16,7 @@ $confirm = $_POST['confirm_pass']; // Password Confirmation
 $email = $_POST['email'];
 
 //testing
-echo "'$username', '$password', '$email', '$confirm'";
+//echo "'$username', '$password', '$email', '$confirm'";
 
 if(strcmp($password, $confirm) != 0) {
 	//throw error, passwords invalid
@@ -26,19 +26,51 @@ if(strcmp($password, $confirm) != 0) {
 else {
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
+//echo $hashed_password;
 
-$sql = "INSERT INTO user(username, password, email) VALUES ('$username','$hashed_password','$email')";
+/* $sql = $db->prepare("INSERT INTO user(username, password, email) VALUES (:user, :pass, :email)");
+$sql->bind_param(':user', $username);
+$sql->bind_param(':pass', $hashed_password);
+$sql->bind_param(':email', $email);
+$sql->execute();
+*/
+//$stmt = $db->prepare("INSERT INTO user (username, password, email) VALUES (?, ?, ?)");
+//$stmt->bind_param("sss", $user, $pass, $prepemail);
 
-if($db->query($sql) === TRUE) {
+$sql="INSERT INTO user (username, password, email) VALUES ('" . $username . "','" . $hashed_password . "','" . $email . "')";
+
+$result = mysqli_query($db, $sql);
+
+// set parameters and execute
+$user = $username;
+$pass = $hashed_password;
+$prepemail = $email;
+//$stmt->execute();
+
+//if($sql->execute()) === TRUE) {
 $userID = $db->insert_id;
 //Start session
+
+$sql = "SELECT * FROM user WHERE userID=( SELECT max(userID) FROM user )";
+
+$result = mysqli_query($db, $sql);
+$result = mysqli_query($db, $sql);
+$result = mysqli_query($db, $sql);
+$result = mysqli_query($db, $sql);
+
+
+$row = mysqli_fetch_assoc($result);
+$ID = $row['userID'];
+
 session_start();
-$_SESSION['username'] = $userID;
-header('Location: https://refrigeratortorecipe.me/pantry.php');
-} else {
-echo "Error creating new user";
+$_SESSION['username'] = $ID;
+header('Location: https://refrigeratortorecipe.me/regSession.php');
+
+
+// } else {
+// echo "Error creating new user";
 // to be updated later
-}
+// }
 }
 $db->close();
 

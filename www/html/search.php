@@ -36,7 +36,7 @@ session_start();
       <ul class="nav navbar-nav navbar-right">
 	  <?php
 	  
-		$_SESSION["username"] = "";	
+		$username = "";	
 		$username = $_SESSION["username"];
 	  
 	  if($username == "")

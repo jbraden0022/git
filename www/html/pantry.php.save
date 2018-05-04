@@ -108,22 +108,17 @@ q
 		
 		
       </div>
- <div class="col-md-2 col-md-offset-1">
+	  
+        <div class="col-md-2 col-md-offset-4">
 
-        <input type="text" class="form-control" id="ingredientName"ingredient" placeholder="Ingredient" >
-		
-	  </div>	  
-  
+        <input class="form-control" name="quantity" type="text"  />
+
+      </div>
 
       <div class="col-md-1 col-md-offset-1">
 	  
         <button class="btn btn-block" type="button" onclick='addIngredient()'>Add</button>
 		
-      </div>
-      <div class="col-md-1 col-md-offset-1">
-
-        <button class="btn btn-block" type="button" onclick='displayRecipes()'>Find Recipes</button>
-
       </div>
 
   </div>
@@ -166,7 +161,7 @@ while($count < count($quantity))
     echo "<td>" . $quantity[$count] ."</td>";
     echo  "<td>" . $quantityType[$count] ."</td>";
     echo  "<td>" . $ingredientID[$count] . "</td>";
-    echo "<td><button class='btn btn-block' type='button' id='delete' onclick='removeIngredient('" . $ingredientID[$count]   . "')' >Delete</button></td>";
+    echo "<td><button class='btn btn-block' type='button' id=delete" . $count . ">Delete</button></td>";
     echo "</tr>";
 $count = $count+1;
 
@@ -179,6 +174,22 @@ $count = $count+1;
 <br>
 
 <!-- Figured we could try to implement a search feature on ingredients to display table of matching ingredients -->
+<div class="container ">
+
+    <div class="row no-gutter">
+      <div class="col-md-2 col-md-offset-4">
+	  
+        <input class="form-control" name="quantity" type="text" placeholder="Search Ingredients" />
+		
+      </div>
+      <div class="col-md-1 col-md-offset-0">
+	  
+        <button class="btn btn-block" type="button" onclick='displayRecipes()'>See what recipes you can make!</button>
+		
+      </div>
+
+  </div>
+  </div>
   
 </div>
   
